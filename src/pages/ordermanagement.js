@@ -6,7 +6,7 @@ const OrderManagement = () => {
 
   const [listItem , setlistItme] = useState('pizza/get-pizza');
 
-  const URL = `https://bquick-backend.onrender.com/api/v1/${listItem}`;
+  const URL = `http://localhost:8080/api/v1/${listItem}`;
   
   const [items, setitems] = useState([]);
 

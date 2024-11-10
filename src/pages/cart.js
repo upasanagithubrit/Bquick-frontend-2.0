@@ -19,7 +19,7 @@ function Cart() {
   return (
     <div className="mb-10 px-4">
       {cart.length > 0 ? (
-        <div className="flex flex-wrap justify-center max-w-[1300px] mx-auto gap-8">
+        <div className="flex flex-col lg:flex-row flex-wrap justify-center max-w-[1300px] mx-auto gap-8">
           {/* Cart Items */}
           <div className="w-full lg:w-[60%] flex flex-col p-4 bg-white shadow-md rounded-lg border border-gray-200">
             {cart.map((item, index) => (
@@ -28,7 +28,7 @@ function Cart() {
           </div>
 
           {/* Summary Section */}
-          <div className="w-full lg:w-[35%] mt-5 flex flex-col bg-[#FFF6E5] shadow-lg rounded-lg p-6 border border-[#FFC480]">
+          <div className="w-full lg:w-[35%] mt-5 lg:mt-0 flex flex-col bg-[#FFF6E5] shadow-lg rounded-lg p-6 border border-[#FFC480]">
             <div className="flex flex-col h-full justify-between gap-6">
               <div className="text-center">
                 <h2 className="font-bold text-2xl text-green-700">Your Cart</h2>
@@ -42,14 +42,14 @@ function Cart() {
                   Total Amount: <span className="text-green-600">Rs. {totalAmount.toFixed(2)}</span>
                 </p>
               </div>
-              <div className="flex flex-row gap-4 mt-6 justify-center">
+              <div className="flex flex-col sm:flex-row gap-4 mt-6 justify-center">
                 <NavLink to="/payment">
-                  <button className="bg-[#FFA726] hover:bg-[#FB8C00] text-white px-4 py-3 rounded-lg font-semibold text-xl transition duration-300 shadow-md hover:shadow-lg">
+                  <button className="bg-[#FFA726] hover:bg-[#FB8C00] text-white px-4 py-3 rounded-lg font-semibold text-xl transition duration-300 shadow-md hover:shadow-lg w-full sm:w-auto">
                     Make Payment
                   </button>
                 </NavLink>
                 <NavLink to="/order">
-                  <button className="bg-[#FFA726] hover:bg-[#FB8C00] text-white px-4 py-3 rounded-lg font-semibold text-xl transition duration-300 shadow-md hover:shadow-lg">
+                  <button className="bg-[#FFA726] hover:bg-[#FB8C00] text-white px-4 py-3 rounded-lg font-semibold text-xl transition duration-300 shadow-md hover:shadow-lg w-full sm:w-auto">
                     Back to Orders
                   </button>
                 </NavLink>

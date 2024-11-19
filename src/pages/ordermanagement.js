@@ -1,11 +1,11 @@
 import React, { useState ,useEffect} from "react";
 import ItemListCard from '../components/itemlistcard'
 import { NavLink } from 'react-router-dom';
+import {Menu, MenuIcon} from 'lucide-react';
 
 const OrderManagement = () => {
-
   const [listItem , setlistItme] = useState('pizza/get-pizza');
-
+  const [openTopNav , setOpenTopNav] = useState(false);
   const URL = `https://bquick-backend.onrender.com/api/v1/${listItem}`;
   
   const [items, setitems] = useState([]);
@@ -25,17 +25,19 @@ async function fetchItemsData() {
   
 }
 
+const toogleNavbar = () => {
 
+}
 //   -----------to-run-fetch-function-----------------
 useEffect(() => {
   console.log("Item is : " , listItem);
   fetchItemsData();
 }, [listItem]);
-
+ 
   return (
-    <div className="flex min-h-screen bg-gray-100">
+    <div className={`flex min-h-screen bg-gray-100`}>
       {/* Sidebar */}
-      <aside className="w-64 bg-gray-900 text-white flex flex-col fixed h-full">
+      <aside className="w-64 bg-gray-900 text-white flex flex-col max-lg:hidden fixed h-full">
         <div className="p-4 text-lg font-semibold">Menu</div>
         <nav className="flex-1">
           <ul className="space-y-4 px-4">
@@ -67,8 +69,43 @@ useEffect(() => {
         </nav>
       </aside>
 
+      <div className="hidden max-lg:block bg-blue-500 h-12 w-screen fixed top-0">
+        <MenuIcon onClick={() => setOpenTopNav(!openTopNav)} className="fixed right-0 m-4" color="white"/>
+      </div>
+         
+      {
+        openTopNav && 
+        <div className="hidden gap-2 fixed top-11 h-12 max-lg:flex w-full bg-blue-500 justify-center items-center">
+
+            <li onClick={()=>setlistItme('pizza/get-pizza')} className="hover:bg-blue-700 p-2 list-none rounded cursor-pointer">
+              Pizza
+            </li>
+            <li onClick={()=>setlistItme('burger/get-burger')} className="hover:bg-blue-700 p-2 list-none rounded cursor-pointer">
+              Burgers
+            </li>
+            <li onClick={()=>setlistItme('pasta/get-pasta')} className="hover:bg-blue-700 p-2 list-none rounded cursor-pointer">
+              Pasta
+            </li>
+            <li onClick={()=>setlistItme('chinese/get-chinese')} className="hover:bg-blue-700 p-2 rounded list-none cursor-pointer flex justify-between">
+              Chinese
+            </li>
+            <li onClick={()=>setlistItme('bread/get-bread')} className="hover:bg-blue-700 p-2 rounded list-none cursor-pointer">
+              Bread
+            </li>
+            <li onClick={()=>setlistItme('beverage/get-beverage')} className="hover:bg-blue-700 p-2 list-none rounded cursor-pointer">
+              Beverages
+            </li>
+            <li onClick={()=>setlistItme('dessert/get-dessert')} className="hover:bg-blue-700 p-2 list-none rounded cursor-pointer">
+              Dessert
+            </li>
+            <li onClick={()=>setlistItme('snack/get-snack')} className="hover:bg-blue-700 p-2 list-none rounded cursor-pointer">
+              Snacks
+            </li>
+        </div>
+      }
+      
       {/* Main Content */}
-      <div className="flex-1 p-8 ml-64">
+      <div className="flex-1 p-8 ml-64 max-lg:ml-0 max-lg:mt-20">
         {/* Top Bar */}
         <header className="flex justify-between items-center bg-white shadow p-4 mb-8">
           <div>

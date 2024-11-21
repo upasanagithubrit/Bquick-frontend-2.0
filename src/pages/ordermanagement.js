@@ -1,7 +1,9 @@
+
+
 import React, { useState ,useEffect} from "react";
 import ItemListCard from '../components/itemlistcard'
 import { NavLink } from 'react-router-dom';
-import {Menu, MenuIcon} from 'lucide-react';
+import { MenuIcon} from 'lucide-react';
 
 const OrderManagement = () => {
   const [listItem , setlistItme] = useState('pizza/get-pizza');
@@ -25,9 +27,7 @@ async function fetchItemsData() {
   
 }
 
-const toogleNavbar = () => {
 
-}
 //   -----------to-run-fetch-function-----------------
 useEffect(() => {
   console.log("Item is : " , listItem);
@@ -69,13 +69,13 @@ useEffect(() => {
         </nav>
       </aside>
 
-      <div className="hidden max-lg:block bg-blue-500 h-12 w-screen fixed top-0">
+      <div className="hidden max-lg:block bg-gray-900 h-12 w-screen fixed top-0">
         <MenuIcon onClick={() => setOpenTopNav(!openTopNav)} className="fixed right-0 m-4" color="white"/>
       </div>
          
       {
         openTopNav && 
-        <div className="hidden gap-2 fixed top-11 h-12 max-lg:flex w-full bg-blue-500 justify-center items-center">
+        <div className="hidden gap-2 fixed top-11 h-24 max-lg:flex w-full bg-gray-900 text-white flex-wrap justify-center items-center">
 
             <li onClick={()=>setlistItme('pizza/get-pizza')} className="hover:bg-blue-700 p-2 list-none rounded cursor-pointer">
               Pizza
@@ -107,17 +107,22 @@ useEffect(() => {
       {/* Main Content */}
       <div className="flex-1 p-8 ml-64 max-lg:ml-0 max-lg:mt-20">
         {/* Top Bar */}
-        <header className="flex justify-between items-center bg-white shadow p-4 mb-8">
-          <div>
-            <h1 className="text-xl font-semibold">BQuick</h1>
-            <p className="text-gray-600">KIET | ORDER ID: XXXXX</p>
-          </div>
-          <NavLink to="/cart">
-          <button className="bg-orange-500 text-white px-4 py-2 rounded">
-            Cart
-          </button>
-          </NavLink>
-        </header>
+        <header
+  className={`flex justify-between items-center bg-white shadow p-4 mb-8 transition-all duration-300 ${
+    openTopNav ? "mt-14" : "mt-0"
+  }`}
+>
+  <div>
+    <h1 className="text-xl font-semibold">BQuick</h1>
+    <p className="text-gray-600">KIET | ORDER ID: XXXXX</p>
+  </div>
+  <NavLink to="/cart">
+    <button className="bg-orange-500 text-white px-4 py-2 rounded">
+      Cart
+    </button>
+  </NavLink>
+</header>
+
 
        
          {/* -----------------items listed here--------------- */
@@ -149,3 +154,4 @@ useEffect(() => {
 };
 
 export default OrderManagement;
+
